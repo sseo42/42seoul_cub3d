@@ -1,0 +1,170 @@
+R 600 400
+
+EA ./textures/wall_1.xpm
+
+WE ./textures/wall_4.xpm
+
+NO ./textures/wall_3.xpm
+
+SO ./textures/wall_2.xpm
+
+C  ./textures/sky_1.xpm
+
+F  ./textures/floor_1.xpm
+
+#GUN
+S00 ./textures/shotgun1.xpm
+S01 ./textures/shotgun5.xpm
+S02 ./textures/shotgun4.xpm
+S03 ./textures/shotgun3.xpm
+S04 ./textures/shotgun2.xpm
+
+#DECO_1
+S20 ./textures/sprite_1.xpm
+
+#ENEMY
+S30 ./textures/enemy_0.xpm
+S31 ./textures/enemy_1.xpm
+S32 ./textures/enemy_2.xpm
+S33 ./textures/enemy_3.xpm
+S34 ./textures/enemy_4.xpm
+S35 ./textures/enemy_5.xpm
+S36 ./textures/enemy_6.xpm
+S37 ./textures/enemy_7.xpm
+S38 ./textures/enemy_8.xpm
+S39 ./textures/enemy_9.xpm
+S310 ./textures/enemy_10.xpm
+S311 ./textures/enemy_11.xpm
+S312 ./textures/enemy_12.xpm
+S313 ./textures/enemy_13.xpm
+S314 ./textures/enemy_14.xpm
+S315 ./textures/enemy_15.xpm
+S316 ./textures/enemy_16.xpm
+S317 ./textures/enemy_17.xpm
+S318 ./textures/enemy_18.xpm
+S319 ./textures/enemy_19.xpm
+S320 ./textures/enemy_20.xpm
+S321 ./textures/enemy_21.xpm
+S322 ./textures/enemy_22.xpm
+S323 ./textures/enemy_23.xpm
+S324 ./textures/enemy_24.xpm
+S325 ./textures/enemy_25.xpm
+S326 ./textures/enemy_26.xpm
+S327 ./textures/enemy_27.xpm
+S328 ./textures/enemy_28.xpm
+S329 ./textures/enemy_29.xpm
+S330 ./textures/enemy_30.xpm
+S331 ./textures/enemy_31.xpm
+S332 ./textures/enemy_33.xpm
+S333 ./textures/enemy_33.xpm
+S334 ./textures/enemy_34.xpm
+S335 ./textures/enemy_35.xpm
+S336 ./textures/enemy_36.xpm
+S337 ./textures/enemy_37.xpm
+S338 ./textures/enemy_38.xpm
+S339 ./textures/enemy_39.xpm
+S340 ./textures/enemy_40.xpm
+S341 ./textures/enemy_41.xpm
+
+#BOSS
+S40 ./textures/boss_1.xpm
+S41 ./textures/boss_1.xpm
+S42 ./textures/boss_1.xpm
+S43 ./textures/boss_1.xpm
+S44 ./textures/boss_1.xpm
+S45 ./textures/boss_1.xpm
+S46 ./textures/boss_1.xpm
+S47 ./textures/boss_1.xpm
+S48 ./textures/boss_2.xpm
+S49 ./textures/boss_2.xpm
+S410 ./textures/boss_2.xpm
+S411 ./textures/boss_2.xpm
+S412 ./textures/boss_2.xpm
+S413 ./textures/boss_2.xpm
+S414 ./textures/boss_2.xpm
+S415 ./textures/boss_2.xpm
+S416 ./textures/boss_3.xpm
+S417 ./textures/boss_3.xpm
+S418 ./textures/boss_3.xpm
+S419 ./textures/boss_3.xpm
+S420 ./textures/boss_3.xpm
+S421 ./textures/boss_3.xpm
+S422 ./textures/boss_3.xpm
+S423 ./textures/boss_3.xpm
+S424 ./textures/boss_4.xpm
+S425 ./textures/boss_4.xpm
+S426 ./textures/boss_4.xpm
+S427 ./textures/boss_4.xpm
+S428 ./textures/boss_4.xpm
+S429 ./textures/boss_4.xpm
+S430 ./textures/boss_4.xpm
+S431 ./textures/boss_4.xpm
+S432 ./textures/boss_5.xpm
+S433 ./textures/boss_5.xpm
+S434 ./textures/boss_6.xpm
+S435 ./textures/boss_7.xpm
+S436 ./textures/boss_8.xpm
+S437 ./textures/boss_8.xpm
+S438 ./textures/boss_8.xpm
+S439 ./textures/boss_9.xpm
+S440 ./textures/boss_10.xpm
+S441 ./textures/boss_11.xpm
+
+#CLOSE_DOOR
+S50 ./textures/door.xpm
+S51 ./textures/eagle.xpm
+S52 ./textures/door.xpm
+S53 ./textures/door.xpm
+
+#DECO_2
+S60 ./textures/sprite_2.xpm
+
+#POTION
+S70 ./textures/sprite_3.xpm
+
+#TRAP
+S80 ./textures/HintBubble.xpm
+
+#BULLET
+S90 ./textures/GoldBraclet.xpm
+
+#ENDING
+Sa0 ./textures/ending.xpm
+
+#DEAD_ENENMY
+Sb41 ./textures/enemy_41.xpm
+
+#DEAD_BOSS
+Sc41 ./textures/boss_11.xpm
+
+#OPEN_DOOR
+Sd0 ./textures/no_img.xpm
+
+          
+
+11111
+10S01
+10001
+18121
+18881
+10881
+11101
+10001
+13001
+10001
+10111
+10001
+10001
+13001
+11101
+10001
+10001
+10001
+10111
+13001
+10001
+10001
+11101
+10001
+13001
+11111
