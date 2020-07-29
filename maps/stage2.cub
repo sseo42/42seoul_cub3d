@@ -1,4 +1,4 @@
-R 600 400
+R 800 400
 
 EA ./textures/wall_1.xpm
 
@@ -8,16 +8,9 @@ NO ./textures/wall_3.xpm
 
 SO ./textures/wall_2.xpm
 
-C  ./textures/sky_1.xpm
+C       ./textures/wall_1.xpm
 
-F  ./textures/floor_1.xpm
-
-#GUN
-S00 ./textures/shotgun1.xpm
-S01 ./textures/shotgun5.xpm
-S02 ./textures/shotgun4.xpm
-S03 ./textures/shotgun3.xpm
-S04 ./textures/shotgun2.xpm
+F              ./textures/grass.xpm     
 
 #DECO_1
 S20 ./textures/sprite_1.xpm
@@ -132,23 +125,43 @@ S90 ./textures/GoldBraclet.xpm
 Sa0 ./textures/ending.xpm
 
 #DEAD_ENENMY
-Sb41 ./textures/boss_11.xpm
+Sb41 ./textures/enemy_41.xpm
+
+#DEAD_BOSS
+Sc41 ./textures/boss_11.xpm
 
 #OPEN_DOOR
 Sd0 ./textures/no_img.xpm
+Sd1 ./textures/no_img.xpm
+Sd2 ./textures/no_img.xpm
+Sd3 ./textures/no_img.xpm
 
-#DEAD_BOSS
-Sc41 ./textures/enemy_41.xpm
+#VICTORY
+Se0 ./textures/victory.xpm
 
-
-1111111111111111
-1000010000001401
-1700010E00001001
-1111000800101001
-1999000000131001
-1200000011111511
-1020000000000601
-1200000800000001
-1111110001111801
-1700056000000001
-1111111111111111
+11111111
+10S00001
+10000151
+18120101
+18880101
+10880101
+11100101
+10000101
+13000101
+10030101
+10110101
+10730101
+10900101
+13000101
+11100101
+10000101
+10300101
+10000101
+10110101
+13000101
+10000101
+10300101
+11100151
+10000001
+13000041
+11111111

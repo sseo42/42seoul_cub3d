@@ -1,0 +1,21 @@
+R 600 400
+
+EA ./textures/wall_1.xpm
+asd
+WE ./textures/wall_4.xpm
+
+NO ./textures/wall_3.xpm
+
+SO ./textures/wall_2.xpm
+
+C  ./textures/sky_1.xpm
+
+F  ./textures/floor_1.xpm
+
+S ./textures/sprite_1.xpm
+
+111111111 111111
+1000E0001 1001111
+1111011111111111
+10000000000000111111
+1111111111111111

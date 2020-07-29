@@ -1,29 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hud_render.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/23 02:01:29 by sseo              #+#    #+#             */
+/*   Updated: 2020/07/23 18:30:10 by sseo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void		ending_writer(t_canvas canvas, int color)
+void		ending_writer(t_canvas canvas, char *word, \
+			int color, int size_ratio)
 {
-	char	ending[11];
+	char	string_size[2];
+	char	*ending;
 
-	ending[0] = (char)(canvas.width / 100);
-	ending[1] = 'G';
-	ending[2] = 'A';
-	ending[3] = 'M';
-	ending[4] = 'E';
-	ending[5] = ' ';
-	ending[6] = 'O';
-	ending[7] = 'V';
-	ending[8] = 'E';
-	ending[9] = 'R';
-	ending[10] = 0;
-	mlx_string_put(canvas.mlx, canvas.window, canvas.width / 2 - (int)(*ending * 45), \
-		canvas.height * 3 / 4, color, ending);
+	string_size[0] = (char)(canvas.width / size_ratio);
+	string_size[1] = 0;
+	ending = ft_strjoin((const char *)string_size, (const char *)word);
+	mlx_string_put(canvas.mlx, canvas.window, canvas.width / 2 - \
+			(int)(*ending * 45), canvas.height * 3 / 4, color, ending);
+	free(ending);
 }
 
 void		health_writer(t_canvas canvas, int x_loc, int y_loc, int color)
 {
 	char	hp_str[5];
 
-	hp_str[0] = (char)(canvas.hud_height / 20); 
+	hp_str[0] = (char)(canvas.hud_height / 20);
+	if (hp_str[0] == 0)
+		hp_str[0] = 1;
 	if (canvas.health == 100)
 	{
 		hp_str[1] = '1';
@@ -46,10 +55,13 @@ void		bullet_writer(t_canvas canvas)
 	char	bullet_cnt[4];
 
 	bullet_cnt[0] = canvas.width / 400;
+	if (bullet_cnt[0] == 0)
+		bullet_cnt[0] = 1;
 	bullet_cnt[1] = canvas.bullet_cnt / 10 + '0';
 	bullet_cnt[2] = canvas.bullet_cnt % 10 + '0';
 	bullet_cnt[3] = 0;
-	mlx_string_put(canvas.mlx, canvas.window, 0, bullet_cnt[0] * 10, STRING_COLOR1, bullet_cnt);
+	mlx_string_put(canvas.mlx, canvas.window, 0, \
+			bullet_cnt[0] * 10, STRING_COLOR1, bullet_cnt);
 }
 
 void		hud_render(t_canvas *canvas_ptr)

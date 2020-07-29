@@ -1,12 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   enemy.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/23 01:47:39 by sseo              #+#    #+#             */
+/*   Updated: 2020/07/23 09:45:49 by sseo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int			enemy_ray_to_me(t_canvas *canvas_ptr, double enemy_ray[2], int enemy_x, int enemy_y)
+int				enemy_ray_to_me(t_canvas *canvas_ptr, \
+				double enemy_ray[2], int enemy_x, int enemy_y)
 {
-	int			side;
-	int			label;
-	int			loc_int[4];
-	double		distance[4];
-	double		ray_vec[2];
+	int				side;
+	int				label;
+	int				loc_int[4];
+	double			distance[4];
+	double			ray_vec[2];
 
 	ray_vec[0] = -enemy_ray[0];
 	ray_vec[1] = -enemy_ray[1];
@@ -17,7 +30,7 @@ int			enemy_ray_to_me(t_canvas *canvas_ptr, double enemy_ray[2], int enemy_x, in
 		loc_int[side] += loc_int[side + 2];
 		label = canvas_ptr->map[loc_int[1]][loc_int[0]];
 		if (label == 1 || label == CLOSE_DOOR)
-			break;
+			break ;
 		if (loc_int[0] == enemy_x && loc_int[1] == enemy_y)
 			return (1);
 		distance[side] += distance[side + 2];
@@ -25,50 +38,21 @@ int			enemy_ray_to_me(t_canvas *canvas_ptr, double enemy_ray[2], int enemy_x, in
 	return (0);
 }
 
-int			get_enemy_mv_idx(int theta)
+int				enemy_check_and_move(t_canvas *canvas_ptr, \
+				t_obj *enemy, double dx, double dy)
 {
-	int			out;
-	int			theta2;
-
-	theta2 = theta * 2;
-	if (theta2 >= 360 - 45 && theta2 < 360 + 45)
-		out = 0;
-	else if (theta2 >= 270 - 45 && theta2 < 270 + 45)
-		out = 1;
-	else if (theta2 >= 180 - 45 && theta2 < 180 + 45)
-		out = 2;
-	else if (theta2 >= 90 - 45 && theta2 < 90 + 45)
-		out = 3;
-	else if (theta2 >= 720 - 45 || theta2 < 0 + 45)
-		out = 4;
-	else if (theta2 >= 630 - 45 && theta2 < 630 + 45)
-		out = 5;
-	else if (theta2 >= 540 - 45 && theta2 < 540 + 45)
-		out = 6;
-	else if (theta2 > 450 - 45 && theta2 < 450 + 45)
-		out = 7;
-	else
-	{
-		printf("error\n");
-		out = 0;
-	}
-	return (out);
-}
-
-int			enemy_check_and_move(t_canvas *canvas_ptr, t_obj *enemy, double dx, double dy)
-{
-	double				expect_x;
-	double				expect_y;
-	int					check_1;
-	int					check_2;
+	double			expect_x;
+	double			expect_y;
+	int				p_1;
+	int				p_2;
 
 	expect_x = enemy->x_loc + dx * ENEMY_MV_SPD;
 	expect_y = enemy->y_loc - dy * ENEMY_MV_SPD;
-	check_1 = (dy > 0) ? canvas_ptr->map[(int)(expect_y - 0.4)][(int)expect_x] : \
-			  canvas_ptr->map[(int)(expect_y + 0.4)][(int)expect_x];
-	check_2 = (dx > 0) ? canvas_ptr->map[(int)expect_y][(int)(expect_x + 0.4)] : \
-			  canvas_ptr->map[(int)expect_y][(int)(expect_x - 0.4)];
-	if (check_1 == WALL || check_1 == CLOSE_DOOR || check_2 == WALL || check_2 == CLOSE_DOOR)
+	p_1 = (dy > 0) ? canvas_ptr->map[(int)(expect_y - 0.4)][(int)expect_x] \
+				: canvas_ptr->map[(int)(expect_y + 0.4)][(int)expect_x];
+	p_2 = (dx > 0) ? canvas_ptr->map[(int)expect_y][(int)(expect_x + 0.4)] \
+				: canvas_ptr->map[(int)expect_y][(int)(expect_x - 0.4)];
+	if (p_1 == WALL || p_1 == CLOSE_DOOR || p_2 == WALL || p_2 == CLOSE_DOOR)
 		return (1);
 	if (canvas_ptr->map[(int)expect_y][(int)expect_x] == 0 || \
 			(enemy->x_int == (int)expect_x && enemy->y_int == (int)expect_y))
@@ -84,10 +68,11 @@ int			enemy_check_and_move(t_canvas *canvas_ptr, t_obj *enemy, double dx, double
 	return (1);
 }
 
-void		enemy_movement(t_canvas *canvas_ptr, t_obj *enemy, double enemy_ray[2], unsigned long current_time)
+void			enemy_movement(t_canvas *canvas_ptr, \
+				t_obj *enemy, double enemy_ray[2], unsigned long current_time)
 {
-	double				dx;
-	double				dy;
+	double			dx;
+	double			dy;
 
 	dx = cos(enemy->angle * PI / 180);
 	dy = sin(enemy->angle * PI / 180);
@@ -99,22 +84,23 @@ void		enemy_movement(t_canvas *canvas_ptr, t_obj *enemy, double enemy_ray[2], un
 		if ((enemy_check_and_move(canvas_ptr, enemy, dx, dy)))
 		{
 			enemy->angle = (enemy->angle + 90) % 360;
-			enemy->pose = ((enemy->pose / 8) + 1) * 8 % ENEMY_MOVE_MOTION_NUM + \
-				get_enemy_mv_idx((360 + enemy->angle - canvas_ptr->angle) % 360);
+			enemy->pose = ((enemy->pose / 8) + 1) * 8 % ENEMY_MOVE_MOTION_NUM \
+			+ get_enemy_mv_idx((360 + enemy->angle - canvas_ptr->angle) % 360);
 		}
 		if (current_time - enemy->last_clock > ENEMY_POSE_CLOCK)
 		{
 			enemy->last_clock = current_time;
-			enemy->pose = ((enemy->pose / 8) + 1) * 8 % ENEMY_MOVE_MOTION_NUM + \
-				get_enemy_mv_idx((360 + enemy->angle - canvas_ptr->angle) % 360);
+			enemy->pose = ((enemy->pose / 8) + 1) * 8 % ENEMY_MOVE_MOTION_NUM \
+			+ get_enemy_mv_idx((360 + enemy->angle - canvas_ptr->angle) % 360);
 		}
 	}
 }
 
-void		enemy_control(t_canvas *canvas_ptr, t_obj *enemy, double enemy_ray[2])
+void			enemy_control(t_canvas *canvas_ptr, \
+				t_obj *enemy, double enemy_ray[2])
 {
-	struct timespec		current;
-	unsigned long		current_time;
+	struct timespec	current;
+	unsigned long	current_time;
 
 	clock_gettime(CLOCK_MONOTONIC, &current);
 	current_time = get_ms(current);
@@ -133,11 +119,11 @@ void		enemy_control(t_canvas *canvas_ptr, t_obj *enemy, double enemy_ray[2])
 		enemy_movement(canvas_ptr, enemy, enemy_ray, current_time);
 }
 
-void		enemies(t_canvas *canvas_ptr)
+void			enemies(t_canvas *canvas_ptr)
 {
-	t_obj		*enemy;
-	double		enemy_ray[2];
-	double		ray_scale;
+	t_obj			*enemy;
+	double			enemy_ray[2];
+	double			ray_scale;
 
 	enemy = canvas_ptr->objs;
 	while (enemy)

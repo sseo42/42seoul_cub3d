@@ -1,19 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   obj_in_view.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/23 02:02:35 by sseo              #+#    #+#             */
+/*   Updated: 2020/07/23 10:03:35 by sseo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-t_obj_info		*search_obj_info(t_obj_info *target_ptr, int id)
-{
-	while (target_ptr)
-	{
-		if (target_ptr->id == id)
-			break ;
-		target_ptr = target_ptr->next;
-	}
-	if (!target_ptr)
-		return (0);
-	return (target_ptr);
-}
-
-int				put_obj_info(t_obj_info **obj_info, t_obj *obj, double x_loc, double y_loc)
+int				put_obj_info(t_obj_info **obj_info, t_obj *obj, \
+				double x_loc, double y_loc)
 {
 	t_obj_info		*ptr;
 	t_obj_info		*new;
@@ -55,9 +55,10 @@ void			free_obj_info(t_obj_info **obj_info)
 	*obj_info = 0;
 }
 
-void			update_obj_info(t_obj_info *obj_info, t_wall_info *wall_info, int w, double angle_vec[2])
+void			update_obj_info(t_obj_info *obj_info, t_wall_info *wall_info, \
+				int w, double angle_vec[2])
 {
-	static double		last_w_distance;
+	static double	last_w_distance;
 
 	while (obj_info)
 	{
@@ -65,14 +66,15 @@ void			update_obj_info(t_obj_info *obj_info, t_wall_info *wall_info, int w, doub
 		{
 			if (obj_info->d_from_plane == -1)
 			{
-				obj_info->d_from_plane = fabs(obj_info->distance_x * angle_vec[0] + \
-						obj_info->distance_y * angle_vec[1]);
+				obj_info->d_from_plane = fabs(obj_info->distance_x * \
+						angle_vec[0] + obj_info->distance_y * angle_vec[1]);
 				obj_info->w_start = 0;
 				obj_info->w_end = INT_MAX;
 				if (last_w_distance < obj_info->d_from_plane)
 					obj_info->w_start = w;
 			}
-			if (wall_info->distance < obj_info->d_from_plane && obj_info->update == 1)
+			if (wall_info->distance < obj_info->d_from_plane && \
+					obj_info->update == 1)
 				obj_info->w_end = w;
 			obj_info->update--;
 		}
@@ -105,7 +107,6 @@ void			sort_obj_info_loop(t_obj_info **obj_info, int cnt)
 	}
 }
 
-//bubble sorting
 void			sort_obj_info(t_obj_info **obj_info)
 {
 	int				cnt;

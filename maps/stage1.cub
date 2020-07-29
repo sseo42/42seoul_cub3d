@@ -1,4 +1,4 @@
-R 600 400
+R 1000 600
 
 EA ./textures/wall_1.xpm
 
@@ -11,13 +11,6 @@ SO ./textures/wall_2.xpm
 C  ./textures/sky_1.xpm
 
 F  ./textures/floor_1.xpm
-
-#GUN
-S00 ./textures/shotgun1.xpm
-S01 ./textures/shotgun5.xpm
-S02 ./textures/shotgun4.xpm
-S03 ./textures/shotgun3.xpm
-S04 ./textures/shotgun2.xpm
 
 #DECO_1
 S20 ./textures/sprite_1.xpm
@@ -140,31 +133,17 @@ Sc41 ./textures/boss_11.xpm
 #OPEN_DOOR
 Sd0 ./textures/no_img.xpm
 
-          
+#VICTORY
+Se0 ./textures/victory.xpm
 
-11111
-10S01
-10001
-18121
-18881
-10881
-11101
-10001
-13001
-10001
-10111
-10001
-10001
-13001
-11101
-10001
-10001
-10001
-10111
-13001
-10001
-10001
-11101
-10001
-13001
-11111
+1111111111111111
+1000010000001401
+1700010E00001001
+1111000800101001
+1999000000131001
+1200000011111511
+1020000000000601
+1200000800000001
+1111110001111801
+1700056000000001
+1111111111111111

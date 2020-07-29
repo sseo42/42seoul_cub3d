@@ -6,7 +6,7 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 21:18:37 by sseo              #+#    #+#             */
-/*   Updated: 2020/07/20 18:04:17 by sseo             ###   ########.fr       */
+/*   Updated: 2020/07/22 21:57:16 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			fd_read(int fd, char **storage_ptr)
 
 	len = 0;
 	if (!(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-		return (-2); //malloc fail
+		return (-2);
 	while ((lf_idx = search_idx((const char *)*storage_ptr, '\n') == -1) && \
 			(len = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
@@ -34,9 +34,9 @@ int			fd_read(int fd, char **storage_ptr)
 	free(buf);
 	buf = 0;
 	if (len < 0)
-		return (-1); //read fail
+		return (-1);
 	if (lf_idx == -1 && len > 0)
-		return (-2); //malloc fail
+		return (-2);
 	return (0);
 }
 
@@ -50,16 +50,17 @@ int			get_line(char **storage_ptr, char **line)
 
 	idx = -1;
 	len = search_idx((const char *)*storage_ptr, 0);
-	is_eof = ((split_idx = search_idx((const char *)*storage_ptr, '\n')) == -1) ? 1 : 0;
+	split_idx = search_idx((const char *)*storage_ptr, '\n');
+	is_eof = (split_idx == -1) ? 1 : 0;
 	if (is_eof)
 		split_idx = len;
 	if (!(*line = (char *)malloc(sizeof(char) * (split_idx + 1))))
-		return (-2); //malloc fail
+		return (-2);
 	while (++idx < split_idx)
 		(*line)[idx] = (*storage_ptr)[idx];
 	(*line)[split_idx] = 0;
 	if (!(temp = (char *)malloc(sizeof(char) * (len - split_idx + is_eof))))
-		return (-2); //malloc fail ->need to fix (leak)
+		return (-2);
 	while (++idx < len + is_eof)
 		temp[idx - split_idx - 1] = (*storage_ptr)[idx];
 	temp[idx - split_idx - 1] = 0;

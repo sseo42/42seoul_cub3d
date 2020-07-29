@@ -6,7 +6,7 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:25:40 by sseo              #+#    #+#             */
-/*   Updated: 2020/07/20 17:58:28 by sseo             ###   ########.fr       */
+/*   Updated: 2020/07/23 09:29:19 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int			file_reader(t_canvas *canvas_ptr, char *file_name)
 
 void		free_map_info(t_map_info **map_info)
 {
-	t_map_info		*current;
-	t_map_info		*after;
+	t_map_info	*current;
+	t_map_info	*after;
 
 	current = *map_info;
 	after = current;
@@ -98,14 +98,7 @@ int			get_map_info(t_map_info **map_info, char **line)
 	new->len = search_idx((const char *)*line, 0);
 	new->row_info = *line;
 	new->next = 0;
-	if (*map_info == 0)
-		*map_info = new;
-	else
-	{
-		while (temp->next)
-			temp = temp->next;
-		temp->next = new;
-	}
+	map_info_insert_last(map_info, &new);
 	order++;
 	return (0);
 }

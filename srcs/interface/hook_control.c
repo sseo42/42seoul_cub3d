@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hook_control.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/23 01:42:34 by sseo              #+#    #+#             */
+/*   Updated: 2020/07/23 08:45:04 by sseo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int			key_press_hook(int keycode, t_canvas *canvas_ptr)
@@ -6,7 +18,8 @@ int			key_press_hook(int keycode, t_canvas *canvas_ptr)
 		close_hook(canvas_ptr);
 	else if (keycode == CLEAN_KEY)
 		mlx_clear_window(canvas_ptr->mlx, canvas_ptr->window);
-	else if (keycode == WEST_KEY || keycode == EAST_KEY || keycode == NORTH_KEY || keycode == SOUTH_KEY)
+	else if (keycode == WEST_KEY || keycode == EAST_KEY || \
+			keycode == NORTH_KEY || keycode == SOUTH_KEY)
 		move_hook(keycode, canvas_ptr, 1);
 	else if (keycode >= LEFT_KEY && keycode <= UP_KEY)
 		angle_hook(keycode, canvas_ptr, 1);
@@ -14,7 +27,7 @@ int			key_press_hook(int keycode, t_canvas *canvas_ptr)
 		jump_hook(keycode, canvas_ptr);
 	else if (keycode == DOOR_KEY)
 		door_hook(canvas_ptr);
-	else if (keycode == FIRE_KEY)
+	else if (keycode == FIRE_KEY && EXTEND_VERSION)
 		gun_hook(canvas_ptr);
 	else
 		printf("yet\n");
@@ -23,11 +36,11 @@ int			key_press_hook(int keycode, t_canvas *canvas_ptr)
 
 int			key_release_hook(int keycode, t_canvas *canvas_ptr)
 {
-	if (keycode == WEST_KEY || keycode == EAST_KEY || keycode == NORTH_KEY || keycode == SOUTH_KEY)
+	if (keycode == WEST_KEY || keycode == EAST_KEY || \
+			keycode == NORTH_KEY || keycode == SOUTH_KEY)
 		move_hook(keycode, canvas_ptr, 0);
 	else if (keycode >= LEFT_KEY && keycode <= UP_KEY)
 		angle_hook(keycode, canvas_ptr, 0);
-
 	return (0);
 }
 
@@ -74,7 +87,7 @@ int			mouse_move_hook(int x, int y, t_canvas *canvas_ptr)
 		last_x = x;
 		last_y = y;
 		canvas_ptr->tilting_spd = -dy * MOUSE_SENSITY * TILTING_SPD / 100;
-		canvas_ptr->rot_spd = -dx * MOUSE_SENSITY * ROT_SPD/ 100;
+		canvas_ptr->rot_spd = -dx * MOUSE_SENSITY * ROT_SPD / 100;
 	}
 	else
 	{

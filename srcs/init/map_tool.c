@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_tool.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/22 22:09:44 by sseo              #+#    #+#             */
+/*   Updated: 2020/07/23 08:48:57 by sseo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int			**init_map(int row_size, int col_size)
@@ -29,7 +41,8 @@ int			**init_map(int row_size, int col_size)
 	return (map);
 }
 
-int			extract_map_info(t_canvas *canvas_ptr, int **map, t_map_info *map_info, int row_idx)
+int			extract_map_info(t_canvas *canvas_ptr, int **map, \
+		t_map_info *map_info, int row_idx)
 {
 	char			c;
 
@@ -39,25 +52,21 @@ int			extract_map_info(t_canvas *canvas_ptr, int **map, t_map_info *map_info, in
 	else if (c >= 'a' && c <= 'z' && (c - 'a' + 10 <= MAX_LABEL))
 		map[map_info->order][row_idx] = c - 'a' + 10;
 	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-	{
 		map[map_info->order][row_idx] = 0;
-		if (c == 'E')
-			return (1);
-		else if (c == 'W')
-			return (3);
-		else if (c == 'N')
-			return (2);
-		else if (c == 'S')
-			return (4);
-	}
 	else if (c != ' ')
 		return (-print_error("Wrong map"));
+	if (c == 'E')
+		return (1);
+	else if (c == 'W')
+		return (3);
+	else if (c == 'N')
+		return (2);
+	else if (c == 'S')
+		return (4);
 	if (map[map_info->order][row_idx] > WALL)
-	{
 		if (add_obj(canvas_ptr, row_idx + 0.5, map_info->order + 0.5, \
 					map[map_info->order][row_idx]))
 			return (-1);
-	}
 	return (0);
 }
 
@@ -73,23 +82,22 @@ int			make_map(t_canvas *canvas_ptr, int **map, t_map_info *map_info)
 		row_idx = -1;
 		while (++row_idx < map_info->len)
 		{
-			if ((camera = extract_map_info(canvas_ptr, map, map_info, row_idx)) > 0 && am_i)
+			if ((camera = extract_map_info(canvas_ptr, map, \
+							map_info, row_idx)) > 0 && am_i)
 				return (print_error("Character should be one"));
-			if (camera > 0)
-			{
-				am_i = 1;
-				canvas_ptr->angle = (camera - 1) * 90;
-				canvas_ptr->x_loc = row_idx + 0.5;
-				canvas_ptr->y_loc = map_info->order + 0.5;
-			}
+			if (camera == 0)
+				continue ;
 			else if (camera < 0)
 				return (1);
+			am_i = 1;
+			canvas_ptr->angle = (camera - 1) * 90;
+			canvas_ptr->x_loc = row_idx + 0.5;
+			canvas_ptr->y_loc = map_info->order + 0.5;
 		}
 		map_info = map_info->next;
 	}
 	return (1 - am_i);
 }
-
 
 int			check_map(int **map, int size[2])
 {
@@ -139,5 +147,6 @@ int			**get_map(t_canvas *canvas_ptr, t_map_info *map_info)
 		free_map(&map, size[1]);
 		return (0);
 	}
+	canvas_ptr->map_col_size = size[1];
 	return (map);
 }

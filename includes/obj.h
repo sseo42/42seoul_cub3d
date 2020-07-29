@@ -6,7 +6,7 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 19:35:49 by sseo              #+#    #+#             */
-/*   Updated: 2020/07/18 16:58:44 by sseo             ###   ########.fr       */
+/*   Updated: 2020/07/23 07:56:17 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 */
 # define WALL 1
 # define DECO_1 2
-
-#ifdef EXTEND_VERSION
-
 # define ENEMY 3
 # define BOSS 4
 # define CLOSE_DOOR 5
@@ -40,30 +37,25 @@
 # define DEAD_ENEMY 11
 # define DEAD_BOSS 12
 # define OPEN_DOOR 13
+# define VICTORY 14
 
-# define MAX_LABEL 13
+# define MAX_LABEL 14
 
-#else
-
-# define MAX_LABEL 2
-#endif
-
-
-typedef struct	s_obj
+typedef struct		s_obj
 {
-	int			id;
-	int			label;
-	int			pose;
+	int				id;
+	int				label;
+	int				pose;
 	unsigned long	last_clock;
 
-	int			x_int;
-	int			y_int;
-	double		x_loc;
-	double		y_loc;
-	int			angle;
-
+	int				x_int;
+	int				y_int;
+	double			x_loc;
+	double			y_loc;
+	int				angle;
+	int				health;
 	struct s_obj	*next;
 
-}				t_obj;
+}					t_obj;
 
 #endif

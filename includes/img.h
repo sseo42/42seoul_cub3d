@@ -6,12 +6,18 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 19:45:22 by sseo              #+#    #+#             */
-/*   Updated: 2020/07/17 19:38:48 by sseo             ###   ########.fr       */
+/*   Updated: 2020/07/23 18:19:38 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMG_H
 # define IMG_H
+
+/*
+**	BMP_CONSTANT
+*/
+# define BMP_HEADER_SIZE 54
+# define BMP_INFO_HEADER_SIZE 40
 
 /*
 **	IMAGE DIRECTION (SUB LABEL)
@@ -36,22 +42,21 @@
 # define ENEMY_POSE_CLOCK 300000
 # define ENEMY_DIE_POSE_CLOCK 30000
 
-typedef struct	s_img
+typedef struct		s_img
 {
-	void		*img;
-	int			*data;
+	void			*img;
+	int				*data;
 
-	int			bg_color;
-	int			label;
-	int			sub_label;
-	int			width;
-	int			height;
-	int			bpp;		//bits per pixel
-	int			sl;			//size line
-	int			endian;
+	int				bg_color;
+	int				label;
+	int				sub_label;
+	int				width;
+	int				height;
+	int				bpp;
+	int				sl;
+	int				endian;
+	struct s_img	*next;
 
-	struct s_img		*next;
-
-}				t_img;
+}					t_img;
 
 #endif

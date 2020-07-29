@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   angle_and_move.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/23 01:37:14 by sseo              #+#    #+#             */
+/*   Updated: 2020/07/23 01:43:01 by sseo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void		change_angle(t_canvas *canvas_ptr)
@@ -53,12 +65,17 @@ int			movement(t_canvas *canvas_ptr)
 
 	if (canvas_ptr->horizon_mv_info == 1 || canvas_ptr->horizon_mv_info == 2)
 	{
-		direction = canvas_ptr->angle + 90 * (3 - canvas_ptr->horizon_mv_info * 2);
-		if (canvas_ptr->vertical_mv_info == 1 || canvas_ptr->vertical_mv_info == 2)
-			direction += 45 * (canvas_ptr->vertical_mv_info * 2 - 3) * (3 - canvas_ptr->horizon_mv_info * 2);
+		direction = canvas_ptr->angle + 90 * \
+					(3 - canvas_ptr->horizon_mv_info * 2);
+		if (canvas_ptr->vertical_mv_info == 1 || \
+				canvas_ptr->vertical_mv_info == 2)
+			direction += 45 * (canvas_ptr->vertical_mv_info * 2 - 3) * \
+							(3 - canvas_ptr->horizon_mv_info * 2);
 	}
-	else if (canvas_ptr->vertical_mv_info == 1 || canvas_ptr->vertical_mv_info == 2)
-		direction = canvas_ptr->angle + 180 * (canvas_ptr->vertical_mv_info - 1);
+	else if (canvas_ptr->vertical_mv_info == 1 || \
+			canvas_ptr->vertical_mv_info == 2)
+		direction = canvas_ptr->angle + 180 * \
+					(canvas_ptr->vertical_mv_info - 1);
 	else
 	{
 		Mix_Pause(RUN_SOUND);
@@ -69,4 +86,3 @@ int			movement(t_canvas *canvas_ptr)
 			MV_SPD * sin(direction * PI / 180));
 	return (0);
 }
-

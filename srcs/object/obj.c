@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   obj.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/23 01:47:19 by sseo              #+#    #+#             */
+/*   Updated: 2020/07/23 01:47:21 by sseo             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 t_obj			*search_obj_id(t_obj *target_ptr, int id)
@@ -26,7 +38,8 @@ t_obj			*search_obj(t_obj *target_ptr, int x_int, int y_int)
 	return (target_ptr);
 }
 
-int				add_obj(t_canvas *canvas_ptr, double x_loc, double y_loc, int label)
+int				add_obj(t_canvas *canvas_ptr, \
+		double x_loc, double y_loc, int label)
 {
 	static int	id;
 	t_obj		*new;
@@ -46,6 +59,7 @@ int				add_obj(t_canvas *canvas_ptr, double x_loc, double y_loc, int label)
 	new->label = label;
 	new->pose = 0;
 	new->angle = 0;
+	new->health = (label == BOSS) ? BOSS_HEALTH : ENEMY_HEALTH;
 	new->last_clock = 0;
 	new->next = target_ptr;
 	canvas_ptr->objs = new;

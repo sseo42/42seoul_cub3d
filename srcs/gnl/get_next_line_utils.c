@@ -6,7 +6,7 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 18:24:36 by sseo              #+#    #+#             */
-/*   Updated: 2020/07/20 18:04:28 by sseo             ###   ########.fr       */
+/*   Updated: 2020/07/22 21:56:08 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			search_idx(const char *str, char target)
 	int				idx;
 
 	idx = 0;
-
 	while (str[idx] != target)
 	{
 		if (str[idx] == 0)
